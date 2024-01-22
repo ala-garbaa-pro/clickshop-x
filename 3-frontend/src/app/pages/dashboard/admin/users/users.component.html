@@ -1,0 +1,179 @@
+<app-main-dashboard-layout>
+  <div class="h-full p-5 md:p-8">
+    <div class="flex flex-col p-5 mb-8 rounded shadow md:p-8 bg-light">
+      <div class="flex flex-col items-center w-full md:flex-row">
+        <div class="mb-4 md:mb-0 md:w-1/4">
+          <h1 class="text-lg font-semibold text-heading">Users</h1>
+        </div>
+        <div class="flex flex-col items-center w-full md:w-3/4 md:flex-row">
+          <div class="flex items-center w-full">
+            <form
+              novalidate=""
+              role="search"
+              class="relative flex items-center w-full"
+            >
+              <label for="search" class="sr-only">Search</label
+              ><button
+                class="absolute p-2 outline-none start-1 text-body focus:outline-none active:outline-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg></button
+              ><input
+                type="text"
+                id="search"
+                name="searchText"
+                class="flex items-center w-full h-12 text-sm transition duration-300 ease-in-out border rounded appearance-none ps-10 pe-4 text-heading focus:outline-none focus:ring-0 border-border-base focus:border-accent"
+                placeholder="Type your query and press enter"
+                aria-label="Search"
+                autocomplete="off"
+              />
+            </form>
+            <a
+              class="inline-flex items-center justify-center flex-shrink-0 h-12 px-5 py-0 font-semibold leading-none transition duration-300 ease-in-out border border-transparent rounded outline-none cursor-pointer focus:outline-none focus:shadow bg-accent text-light hover:bg-accent-hover ms-4 md:ms-6"
+              (click)="openCreateUserPage()"
+              ><span class="hidden md:block">+ Add User</span
+              ><span class="md:hidden">+ Add</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="pageUsers$ | async as pageData; else failureOrLoading">
+      <div class="mb-6 overflow-hidden rounded shadow">
+        <div class="w-full" style="overflow: auto hidden">
+          <table class="min-w-full divide-y divide-gray-200" style="width: 900px; min-width: 100%; table-layout: fixed">
+            <colgroup>
+              <col style="width: 50px" />
+              <col style="width: 100%" />
+              <col style="width: 100%" />
+              <col style="width: 100%" />
+              <col style="width: 150px" />
+            </colgroup>
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="p-4 text-left">ID</th>
+                <th class="p-4 text-left">Name</th>
+                <th class="p-4 text-left">Email</th>
+                <th class="p-4 text-left">Roles</th>
+                <th class="p-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr *ngFor="let user of users" class="even:bg-indigo-100/30">
+                <td class="p-4">{{ user?.userId }}</td>
+                <td class="p-4">{{ user.name }}</td>
+                <td class="p-4">{{ user.email }}</td>
+                <td class="p-4"><app-format-roles [roles]="user.roles" /></td>
+
+                <td class="flex flex-row justify-end w-full p-4 text-right">
+                  <div
+                    *ngIf="
+                      user.userId !== undefined &&
+                      canDoActions(user.roles, user.userId)
+                    "
+                    class="flex space-x-4"
+                  >
+                    <button
+                      *ngIf="!amIAdminAndAmICurrent(user.roles, user.userId)"
+                      class="text-red-500 transition duration-200 hover:text-red-600 focus:outline-none"
+                      title="Delete"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 19.4 22.169"
+                        fill="currentColor"
+                        width="16"
+                      >
+                        <g
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.4"
+                        >
+                          <path
+                            data-name="Rectangle 2"
+                            d="M8.238.7h2.923a2 2 0 012 2v.769h0-6.923 0V2.7a2 2 0 012-2z"
+                          ></path>
+
+                          <path data-name="Line 1" d="M.7 3.469h18"></path>
+
+                          <path
+                            data-name="Path 77"
+                            d="M14.649 21.469h-9.9a1.385 1.385 0 01-1.38-1.279L2.085 3.469h15.231L16.029 20.19a1.385 1.385 0 01-1.38 1.279z"
+                          ></path>
+
+                          <path data-name="Line 2" d="M7.623 6.238V18.7"></path>
+
+                          <path
+                            data-name="Line 3"
+                            d="M11.777 6.238V18.7"
+                          ></path>
+                        </g>
+                      </svg>
+                    </button>
+
+                    <a
+                      *ngIf="user.userId !== undefined"
+                      title="Edit"
+                      class="text-base transition duration-200 cursor-pointer hover:text-heading"
+                      [routerLink]="[
+                        '/dashboard/admin/users/update',
+                        user.userId
+                      ]"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20.547 20.299"
+                        fill="currentColor"
+                        width="16"
+                      >
+                        <g stroke="currentColor" stroke-width=".4">
+                          <path
+                            data-name="Path 78"
+                            d="M18.659 12.688a.5.5 0 00-.5.5v4.423a1.5 1.5 0 01-1.494 1.494H2.691A1.5 1.5 0 011.2 17.609V4.629a1.5 1.5 0 011.494-1.494h4.419a.5.5 0 100-1H2.691A2.493 2.493 0 00.2 4.629v12.98A2.493 2.493 0 002.691 20.1h13.976a2.493 2.493 0 002.491-2.491v-4.423a.5.5 0 00-.5-.5zm0 0"
+                          ></path>
+
+                          <path
+                            data-name="Path 79"
+                            d="M18.96.856a2.241 2.241 0 00-3.17 0L6.899 9.739a.5.5 0 00-.128.219l-1.169 4.219a.5.5 0 00.613.613l4.219-1.169a.5.5 0 00.219-.128l8.886-8.887a2.244 2.244 0 000-3.17zm-10.971 9.21l7.273-7.273 2.346 2.346-7.273 7.273zm-.469.94l1.879 1.875-2.592.718zm11.32-7.1l-.528.528-2.346-2.345.528-.528a1.245 1.245 0 011.761 0l.585.584a1.247 1.247 0 010 1.761zm0 0"
+                          ></path>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #failureOrLoading>
+      <ng-container *ngIf="errorMessage; else loading">
+        <div class="text-red-500">
+          {{ errorMessage }}
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <div class="text-gray-500 shadow-sm loader">
+          <span><i class="animate-spin fas fa-circle-notch"></i></span> &nbsp;
+          <span>Processing...</span>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</app-main-dashboard-layout>

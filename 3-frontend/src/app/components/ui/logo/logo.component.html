@@ -1,0 +1,21 @@
+<a
+  [href]="siteSettings.logo.href"
+  [ngClass]="'inline-flex ' + class"
+  [attr.aria-label]="siteSettings.logo.alt"
+>
+  <span
+    class="relative overflow-hidden"
+    [ngStyle]="{
+      width: siteSettings.logo.width,
+      height: siteSettings.logo.height
+    }"
+  >
+    <img
+      [src]="siteSettings.logo.url"
+      [alt]="siteSettings.logo.alt"
+      [ngClass]="'object-contain'"
+      loading="eager"
+    />
+  </span>
+</a>
+<!-- <h1 class="text-2xl text-accent-500">DIKA Dash</h1> -->

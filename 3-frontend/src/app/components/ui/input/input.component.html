@@ -1,0 +1,32 @@
+<!-- input.component.html -->
+<div [ngClass]="class">
+  <label
+    *ngIf="_showLabel"
+    [for]="_name"
+    class="block mb-3 text-sm font-semibold leading-none text-body-dark"
+  >
+    {{ _label }}
+  </label>
+  <input
+    [formControl]="control"
+    [id]="_name"
+    [name]="_name"
+    [type]="_type"
+    [attr.disabled]="_disabled ? true : null"
+    [attr.aria-invalid]="_error ? 'true' : 'false'"
+    [attr.autoComplete]="'off'"
+    [attr.autoCorrect]="'off'"
+    [attr.autoCapitalize]="'off'"
+    [attr.spellCheck]="'false'"
+    [ngClass]="allInputClasses"
+  />
+  <p *ngIf="_note" class="mt-2 text-xs text-body">{{ _note }}</p>
+
+  <ng-container
+    *ngIf="control.touched && control.dirty && _error && _error !== 'null'"
+  >
+    <p  class="my-2 text-xs text-red-500 text-start">
+      {{ _error }}
+    </p>
+  </ng-container>
+</div>

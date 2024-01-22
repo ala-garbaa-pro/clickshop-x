@@ -1,0 +1,43 @@
+<!-- login-form.component.html -->
+<form [formGroup]="loginFormGroup" (ngSubmit)="loginUser()">
+  <!-- Email -->
+  <app-input-form
+    [control]="email"
+    _label="Email"
+    _type="email"
+    _variant="outline"
+    class="mb-4"
+    _error="{{ loginFormGroup.get('email')?.errors | json }}"
+    [_name]="'email'"
+    [_disabled]="submitted"
+  />
+
+  <app-input-form
+    [control]="password"
+    _label="Password"
+    _type="password"
+    _variant="outline"
+    class="mt-4"
+    _error="{{ loginFormGroup.get('password')?.errors | json }}"
+    [_name]="'password'"
+    [_disabled]="submitted"
+  />
+
+  <ng-container *ngIf="errorMessage">
+    <div class="mt-2 text-sm text-red-400">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+
+  <app-button
+    class="w-full"
+    [loading]="submitted"
+    [disabled]="
+      submitted ||
+      loginFormGroup.get('email')?.errors !== null ||
+      loginFormGroup.get('password')?.errors !== null
+    "
+  >
+    Login
+  </app-button>
+</form>

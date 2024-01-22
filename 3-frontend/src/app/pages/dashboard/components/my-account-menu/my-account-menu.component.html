@@ -1,0 +1,101 @@
+<div class="relative inline-block text-left text-white" (click)="closeMenu()">
+  <button
+    (click)="toggleMenuState(); $event.stopPropagation()"
+    class="flex items-center focus:outline-none"
+    type="button"
+    aria-haspopup="menu"
+  >
+    <div
+      class="relative w-10 h-10 overflow-hidden rounded-full shadow-md cursor-pointer"
+    >
+      <svg
+        class="text-slate-300 dark:text-slate-900"
+        width="40"
+        height="40"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_5_2)">
+          <path
+            d="M0 0H40V40H0V0Z"
+            class="fill-slate-300 dark:fill-slate-600"
+          />
+          <path
+            d="M30 27.036V25.496C30.026 25.2993 30.0091 25.0994 29.9502 24.9099C29.8914 24.7204 29.7922 24.546 29.6593 24.3987C29.6353 24.2613 29.603 24.2127 29.4807 24.1757C29.3867 24.1463 29.2938 24.1138 29.202 24.0783C28.9063 23.9673 28.6143 23.845 28.3227 23.7253C27.5038 23.382 26.6881 23.0311 25.8757 22.6727C25.4797 22.499 25.0807 22.325 24.6877 22.1503L23.9543 21.824L23.6563 21.6907C23.507 21.624 23.6413 21.651 23.6143 21.5483C23.6017 21.5007 23.4587 21.418 23.4223 21.3873L23.095 21.1127C22.9993 21.0323 23.0177 20.955 23.008 20.826C22.986 20.5544 22.97 20.2823 22.96 20.01C22.9573 19.919 22.956 19.828 22.9563 19.737C22.9567 19.646 23.0293 19.5767 23.0687 19.5037C23.1753 19.306 23.2712 19.1027 23.356 18.8947C23.5261 18.4709 23.6633 18.0346 23.7663 17.5897C24.043 17.7487 24.3053 17.3897 24.433 17.194C24.6165 16.8973 24.7606 16.5779 24.8617 16.244C24.9713 15.9254 25.0418 15.5946 25.0717 15.259C25.0837 15.102 25.1157 14.769 24.9097 14.717C24.9627 14.7297 25.0167 14.7407 25.069 14.7553C24.9604 14.7257 24.8509 14.6994 24.7407 14.6763C24.7933 14.6877 24.8457 14.7017 24.8983 14.714C24.8072 14.6853 24.7105 14.6784 24.6162 14.694C24.5219 14.7095 24.4325 14.7469 24.3553 14.8033C24.5999 13.8881 24.7248 12.945 24.727 11.9977C24.711 11.1677 24.5397 10.1713 23.7817 9.68866C23.8543 9.63391 23.9144 9.5642 23.9578 9.48424C24.0012 9.40428 24.0269 9.31594 24.0332 9.22519C24.0395 9.13444 24.0263 9.04339 23.9944 8.95819C23.9625 8.87299 23.9127 8.79563 23.8483 8.73133C23.6966 8.56525 23.5147 8.42951 23.3123 8.33133C23.1343 8.97333 22.1243 8.893 21.623 8.88133C20.5407 8.81302 19.4556 8.79989 18.372 8.842C17.5527 8.90633 16.756 9.058 16.1293 9.62666C15.6766 10.0617 15.348 10.6095 15.1773 11.2137C15.0132 11.7645 14.9213 12.3344 14.904 12.909C14.8394 13.5862 14.9564 14.2684 15.243 14.8853C15.0867 14.6577 14.6097 14.5573 14.479 14.8627C14.4057 15.1809 14.4289 15.5137 14.5457 15.8187C14.6448 16.2698 14.8114 16.7033 15.04 17.1047C15.1683 17.3237 15.43 17.7523 15.7427 17.6023C15.9213 18.3677 16.2305 19.0966 16.6567 19.757C16.7359 19.8822 16.8262 20 16.9267 20.109C16.9639 20.1358 16.994 20.1714 17.0143 20.2126C17.0345 20.2539 17.0442 20.2994 17.0427 20.3453C17.04 20.512 17.0393 20.6807 17.038 20.848C17.038 20.9283 17.0637 21.0093 16.9923 21.0543C16.9817 21.061 16.9716 21.0685 16.962 21.0767L16.5673 21.4077L16.408 21.541C16.3517 21.588 16.5023 21.6183 16.367 21.6743C15.761 21.931 15.1557 22.1893 14.554 22.4557L14.5687 22.4813C13.6545 22.8863 12.7367 23.283 11.8153 23.6713C11.482 23.8103 11.1503 23.949 10.8133 24.0757C10.7197 24.111 10.6253 24.146 10.5293 24.1757C10.374 24.222 10.4177 24.3307 10.3193 24.4343C9.877 24.8947 10.0167 25.7627 10.0167 26.3493V27.058C11.2606 28.4863 12.7966 29.6309 14.5209 30.4145C16.2452 31.1981 18.1176 31.6024 20.0116 31.6002C21.9056 31.5979 23.777 31.1891 25.4994 30.4015C27.2219 29.6138 28.7551 28.4655 29.9957 27.0343L30 27.036ZM15.33 15.033C15.339 15.0473 15.3483 15.0613 15.3583 15.0753C15.3517 15.0683 15.4513 15.2697 15.33 15.033Z"
+            fill="currentColor"
+          />
+          <path
+            d="M29.6597 24.3983C29.868 24.5943 29.6383 24.2763 29.6597 24.3983Z"
+            fill="currentColor"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_5_2">
+            <rect
+              width="40"
+              height="40"
+              class="fill-slate-300 dark:fill-slate-600"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+  </button>
+
+  <ul
+    [class]="
+      isOpen
+        ? 'absolute z-50 right-0 mt-1 rounded-md bg-white shadow-lg w-44'
+        : 'hidden'
+    "
+    role="menu"
+    tabindex="0"
+    (click)="$event.stopPropagation()"
+  >
+    <li
+      class="flex flex-col w-full px-4 py-3 space-y-1 text-sm text-black rounded-t-md bg-accent-300/40"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span class="font-semibold capitalize">Customer</span>
+      <span class="text-xs">customer@demo.com</span>
+    </li>
+    <li
+      class="border-b border-gray-100 cursor-pointer last:border-0"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <a
+        class="block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent text-heading"
+        href="/profile-update"
+        >Profile</a
+      >
+    </li>
+    <li
+      class="border-b border-gray-100 cursor-pointer last:border-0"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <app-dark-mode-switcher (click)="closeMenu()"></app-dark-mode-switcher>
+    </li>
+    <li
+      class="border-b border-gray-100 cursor-pointer last:border-0 rounded-b-md"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <button
+        (click)="logout()"
+        class="block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent text-heading"
+      >
+        Logout
+      </button>
+    </li>
+  </ul>
+  <div
+    *ngIf="isOpen"
+    (click)="closeMenu()"
+    class="fixed inset-0 z-40 cursor-pointer"
+    style="background-color: rgba(0, 0, 0, 0.3)"
+  ></div>
+</div>
